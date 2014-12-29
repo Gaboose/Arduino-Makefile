@@ -1059,8 +1059,18 @@ else
     $(call show_config_variable,DEVICE_PATH,[AUTODETECTED])
 endif
 
-ifdef FORCE_MONITOR_PORT
-    # Skips the DEVICE_PATH existance check.
+ifndef FORCE_MONITOR_PORT
+    FORCE_MONITOR_PORT=false
+    $(call show_config_variable,FORCE_MONITOR_PORT,[DEFAULT])
+else
+    ifeq ($(shell echo $(strip $(FORCE_MONITOR_PORT)) | tr '[:upper:]' '[:lower:]'),false)
+        FORCE_MONITOR_PORT=false
+    endif
+    $(call show_config_variable,FORCE_MONITOR_PORT,[USER])
+endif
+
+ifneq ($(FORCE_MONITOR_PORT),false)
+    # Skip the DEVICE_PATH existance check.
     get_monitor_port = $(DEVICE_PATH)
 else
     # Returns the Arduino port (first wildcard expansion) if it exists, otherwise it errors.
