@@ -326,9 +326,9 @@ Skip the MONITOR_PORT existance check.
 
 ```Makefile
 # Enable
-FORCE_MONITOR_PORT = true
+FORCE_MONITOR_PORT = TRUE
 # Disable (default)
-FORCE_MONITOR_PORT = false
+FORCE_MONITOR_PORT = FALSE
 ```
 
 **Requirement:** *Optional*

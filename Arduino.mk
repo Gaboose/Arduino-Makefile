@@ -1060,16 +1060,13 @@ else
 endif
 
 ifndef FORCE_MONITOR_PORT
-    FORCE_MONITOR_PORT=false
+    FORCE_MONITOR_PORT=FALSE
     $(call show_config_variable,FORCE_MONITOR_PORT,[DEFAULT])
 else
-    ifeq ($(shell echo $(strip $(FORCE_MONITOR_PORT)) | tr '[:upper:]' '[:lower:]'),false)
-        FORCE_MONITOR_PORT=false
-    endif
     $(call show_config_variable,FORCE_MONITOR_PORT,[USER])
 endif
 
-ifneq ($(FORCE_MONITOR_PORT),false)
+ifneq ($(FORCE_MONITOR_PORT),FALSE)
     # Skip the DEVICE_PATH existance check.
     get_monitor_port = $(DEVICE_PATH)
 else
